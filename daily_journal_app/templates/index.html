@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Journal</title>
+</head>
+<body>
+    <h1>Daily Journal for {{ today }}</h1>
+
+    <h2>Add Task</h2>
+    <form action="/add_task" method="post">
+        Date: <input type="date" name="date" value="{{ today }}"><br>
+        Project: <input type="text" name="project"><br>
+        Details: <textarea name="details"></textarea><br>
+        Start Date: <input type="date" name="start_date"><br>
+        End Date: <input type="date" name="end_date"><br>
+        Assignee: <input type="text" name="assignee"><br>
+        <button type="submit">Add Task</button>
+    </form>
+
+    <h2>Add Study Log</h2>
+    <form action="/add_study" method="post">
+        Date: <input type="date" name="date" value="{{ today }}"><br>
+        Title: <input type="text" name="title"><br>
+        Reference: <input type="text" name="reference"><br>
+        Content: <textarea name="content"></textarea><br>
+        <button type="submit">Add Study Log</button>
+    </form>
+
+    <h2>Add Meeting</h2>
+    <form action="/add_meeting" method="post">
+        Date and time: <input type="datetime-local" name="datetime"><br>
+        Description: <input type="text" name="description"><br>
+        <button type="submit">Add Meeting</button>
+    </form>
+
+    <h2>Add Memo</h2>
+    <form action="/add_memo" method="post">
+        Date: <input type="date" name="date" value="{{ today }}"><br>
+        Content: <textarea name="content"></textarea><br>
+        <button type="submit">Add Memo</button>
+    </form>
+
+    <h2>Today's Tasks</h2>
+    <ul>
+    {% for t in tasks %}
+        <li>{{ t.project }} - {{ t.details }} ({{ t.start_date }} ~ {{ t.end_date }}) - {{ t.assignee }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Today's Study Logs</h2>
+    <ul>
+    {% for s in studies %}
+        <li>{{ s.title }} - {{ s.reference }} - {{ s.content }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Today's Meetings</h2>
+    <ul>
+    {% for m in meetings %}
+        <li>{{ m.date }} - {{ m.description }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Memos</h2>
+    <ul>
+    {% for m in memos %}
+        <li>{{ m.content }}</li>
+    {% endfor %}
+    </ul>
+
+    <a href="/dashboard">Go to dashboard</a>
+</body>
+</html>
