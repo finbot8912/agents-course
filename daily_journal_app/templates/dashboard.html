@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>All Tasks</h1>
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Project</th>
+            <th>Details</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Assignee</th>
+        </tr>
+        {% for t in tasks %}
+        <tr>
+            <td>{{ t.date }}</td>
+            <td>{{ t.project }}</td>
+            <td>{{ t.details }}</td>
+            <td>{{ t.start_date }}</td>
+            <td>{{ t.end_date }}</td>
+            <td>{{ t.assignee }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Back to home</a>
+</body>
+</html>
